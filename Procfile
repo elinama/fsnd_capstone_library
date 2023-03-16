@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn fsnd_capstone_library:api
