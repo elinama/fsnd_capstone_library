@@ -1,0 +1,5220 @@
+{
+	"info": {
+		"_postman_id": "a946b97c-ca23-4ebd-9126-096f0f0156f6",
+		"name": "Library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25892567"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "get books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books?query=Jane",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Jane"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by query not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains an empty list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.eql([]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books?query=Janny",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Janny"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "No action",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wrong action",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"blah\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/5/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"5",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book already taken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return book that is returned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"return\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book that everybody took",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TakeBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReturnBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"return\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get books of users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books of user wrong user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/4/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"4",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users with overdue books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?overdue=True",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "overdue",
+									"value": "True"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users by query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?query=Elina",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Elina"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users by query user not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?query=Janny",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Janny"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user with books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"Address\" :\"bbbbbb\",\n    \"Phone\" : \"1212121\"    \n}"
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\": \"My book\",\n    \"Author\": \"Elina Maliarsky\",\n    \"Number_of_exemplars\" :11\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Number_of_exemplars\": \"12\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Author\": \"Elina\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 401\", function () {",
+									"  pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code authorization_header_missing\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"authorization_header_missing\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books?query=Jane",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Jane"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by query not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains an empty list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.eql([]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books?query=Janny",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Janny"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "No action",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 422\", function () {\r",
+									"  pm.response.to.have.status(422);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message unprocessable\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"unprocessable\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wrong action",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message bad request\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"bad request\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"blah\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/5/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"5",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book already taken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message bad request\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"bad request\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return book that is returned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message bad request\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"bad request\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"return\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book that everybody took",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TakeBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 3\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books.length).eq(3);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book number of eemplars is 9\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.book.Number_of_exemplars).eq(9);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReturnBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 2\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books.length).eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book number f eemplars is 9\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.book.Number_of_exemplars).eq(10);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"return\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get books of users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a full list of books (join of user of books ) \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 2\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books.length).eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book expected properties exist\",\r",
+									"function () {\r",
+									"     var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Author');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Title');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Number_of_Exemplars');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Start_date');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Due_date');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books of user wrong user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/10/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {\r",
+									"  pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code unauthorized\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users with overdue books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function ()  {\r",
+									"  pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code unauthorized\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?overdue=True",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "overdue",
+									"value": "True"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users by query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {\r",
+									"  pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code unauthorized\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?query=Elina",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Elina"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users by query user not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {\r",
+									"  pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code unauthorized\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?query=Janny",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Janny"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user with books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {\r",
+									"  pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code unauthorized\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {\r",
+									"  pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message with code unauthorized\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"Address\" :\"bbbbbb\",\n    \"Phone\" : \"1212121\"    \n}"
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\": \"My book\",\n    \"Author\": \"Elina Maliarsky\",\n    \"Number_of_exemplars\" :11\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Number_of_exemplars\": \"12\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Author\": \"Elina\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is not successful with status 403\", function () {",
+									"  pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message with code unauthorized\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[\"code\"]).to.eql(\"unauthorized\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{User}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Librarian",
+			"item": [
+				{
+					"name": "get books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books?query=Jane",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Jane"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get books by query not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains an empty list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.eql([]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books?query=Janny",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Janny"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for users is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of users \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.users).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users with overdue books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for users is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of users \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.users).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of users \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.users[0][\"ID\"]).eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?overdue=True",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "overdue",
+									"value": "True"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users by query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for users is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of users \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.users).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?query=Elina",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Elina"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users by query user not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for users is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of users \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.users).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains an empty list of users \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.users).to.eql([]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users?query=Janny",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Janny"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user with books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a full list of books (join of user of books ) \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 2\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books.length).eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book expected properties exist\",\r",
+									"function () {\r",
+									"     var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Author');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Title');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Number_of_Exemplars');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Start_date');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Due_date');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains users array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.users).to.be.an('array')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"Address\" :\"bbbbbb\",\n    \"Phone\" : \"1212121\"    \n}"
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains users array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.users).to.be.an('array')",
+									"});",
+									"",
+									"pm.test(\"user expected property has proper value\",",
+									"function () {",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect(jsonData.users[0].Phone).eq(\"88888\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for users is not successful with status 404\", function () {",
+									"  pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message resource not found\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for users is not successful with status 404\", function () {",
+									"  pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message resource not found\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Phone\": \"88888\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/users/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains books array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.books).to.be.an('array')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\": \"My book\",\n    \"Author\": \"Elina Maliarsky\",\n    \"Number_of_exemplars\" :11\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains books array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.books).to.be.an('array')",
+									"});",
+									"",
+									"pm.test(\"book expected property has proper value\",",
+									"function () {",
+									"     var jsonData = pm.response.json();",
+									"     pm.expect(jsonData.books[0].Number_of_exemplars).eq(12);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Number_of_exemplars\": \"12\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {",
+									"  pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message resource not found\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Author\": \"Elina\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books wrong id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {",
+									"  pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response contains a success status flag equals to false\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql(false)",
+									"});",
+									"",
+									"pm.test(\"Response contains a message resource not found\",",
+									" function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "No action",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 422\", function () {\r",
+									"  pm.response.to.have.status(422);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message unprocessable\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"unprocessable\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wrong action",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message bad request\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"bad request\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"blah\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/15/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"15",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book already taken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message bad request\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"bad request\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return book that is returned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message bad request\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"bad request\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"return\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book that everybody took",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TakeBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 3\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books.length).eq(3);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book number of eemplars is 9\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.book.Number_of_exemplars).eq(9);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"take\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReturnBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a list of books \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 2\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user_books.length).eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book number f eemplars is 9\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.book.Number_of_exemplars).eq(10);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"action\":\"return\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get books of users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Request for books is successful with a status code of 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a full list of books (join of user of books ) \",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response list of user books is of size 2\",\r",
+									"function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.books.length).eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"book expected properties exist\",\r",
+									"function () {\r",
+									"     var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Author');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Title');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Number_of_Exemplars');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Start_date');\r",
+									"     pm.expect(jsonData.books[0]).to.have.property('Due_date');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to true\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books of user wrong user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request for books is not successful with status 404\", function () {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a success status flag equals to false\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains a message resource not found\",\r",
+									" function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"resource not found\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/10/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"10",
+								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw4ckY5SHZOMlBRWHA5Ylgyb2lTYSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdWxsLXN0YWNrLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDBkYjVjOGI3NWJjODdlN2E4MDI2YzEiLCJhdWQiOiJMaWJyYXJ5IiwiaWF0IjoxNjc4OTY2NTgyLCJleHAiOjE2NzkwNTI5ODIsImF6cCI6IkJxMmthSzhFMnFLTHFzaldPbUtKMGllYUxDVUsydzVNIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJhY3Rpb246Ym9vayIsImNyZWF0ZTpib29rIiwiY3JlYXRlOnVzZXIiLCJkZWxldGU6Ym9vayIsImRlbGV0ZTp1c2VyIiwiZ2V0OnVzZXIiLCJnZXQ6dXNlcl9ib29rcyIsImdldDp1c2VycyIsInVwZGF0ZTpib29rIiwidXBkYXRlOnVzZXIiXX0.MKuUlh_XkmAB8UmMdUDe6GmnjjJPAVt2wlwYqC77OkxE95vLcbhnjkeM7ioZiFPSD9RJ5sslwM1SFZRE9DwA-FOsGoTjBEzURPUlfbplFpOD9O25sxUubWGxNw7hv4IHuqU3adwLUQ8UA1xsQSn5Otk46wK-I8b_QGhFsYz_oAzBeKFIlEE9qzlgkMHd4kIsaknhQB-cDvPSvbrsHRQFUgzpAlsnLlYtT-4o8GbyYzWM0HigXJT5hqOeE9PDYDZ5r3fm_NTqjZknv1GcRSSe5Y1KArX6HTLjwqu3eJcNrzUyw_t902i5PRL_tMQGgw-FxYFYuRKeiqg4sddb4sL3ig",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "User",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw4ckY5SHZOMlBRWHA5Ylgyb2lTYSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdWxsLXN0YWNrLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDBkYjVmNzUyNDY1NjA1OWJiMzdkN2YiLCJhdWQiOiJMaWJyYXJ5IiwiaWF0IjoxNjc4OTY2NDk3LCJleHAiOjE2NzkwNTI4OTcsImF6cCI6IkJxMmthSzhFMnFLTHFzaldPbUtKMGllYUxDVUsydzVNIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJhY3Rpb246Ym9vayIsImdldDp1c2VyX2Jvb2tzIl19.McTfccMdnNVFQCfIz9tWXJJX4y8N96DDfd2w3lAn0P2htIgZRz6JaeeJB2f8pM6ENCSwWirF65DwOkOgyc3wU27-9D34GD9UbZ6IINsBV1H5n_nxZZBvrkT7KjMkwc48B4c4jPoWSrd7o8w2Avj2oWFGbrtnZptpwSkMk4JFm6BtEC1f3G7vWISHgJOcKcumbfDmQrpzdkTB-4D3p9_ATN0v36M_FibCH5TE0abQt4V_qbouBUT6UIcVQNgP0bptfhEN73dB7JSU5cWb2elN7jZPRsRsOcGJEdo0bDRiC1LPvpxz8xqMult8d1C3s0zM79nM_f2YTdIY4nOwvCkVMQ",
+			"type": "string"
+		},
+		{
+			"key": "Librarian",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw4ckY5SHZOMlBRWHA5Ylgyb2lTYSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mdWxsLXN0YWNrLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDBkYjVjOGI3NWJjODdlN2E4MDI2YzEiLCJhdWQiOiJMaWJyYXJ5IiwiaWF0IjoxNjc4OTY2NTgyLCJleHAiOjE2NzkwNTI5ODIsImF6cCI6IkJxMmthSzhFMnFLTHFzaldPbUtKMGllYUxDVUsydzVNIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJhY3Rpb246Ym9vayIsImNyZWF0ZTpib29rIiwiY3JlYXRlOnVzZXIiLCJkZWxldGU6Ym9vayIsImRlbGV0ZTp1c2VyIiwiZ2V0OnVzZXIiLCJnZXQ6dXNlcl9ib29rcyIsImdldDp1c2VycyIsInVwZGF0ZTpib29rIiwidXBkYXRlOnVzZXIiXX0.MKuUlh_XkmAB8UmMdUDe6GmnjjJPAVt2wlwYqC77OkxE95vLcbhnjkeM7ioZiFPSD9RJ5sslwM1SFZRE9DwA-FOsGoTjBEzURPUlfbplFpOD9O25sxUubWGxNw7hv4IHuqU3adwLUQ8UA1xsQSn5Otk46wK-I8b_QGhFsYz_oAzBeKFIlEE9qzlgkMHd4kIsaknhQB-cDvPSvbrsHRQFUgzpAlsnLlYtT-4o8GbyYzWM0HigXJT5hqOeE9PDYDZ5r3fm_NTqjZknv1GcRSSe5Y1KArX6HTLjwqu3eJcNrzUyw_t902i5PRL_tMQGgw-FxYFYuRKeiqg4sddb4sL3ig",
+			"type": "string"
+		}
+	]
+}
