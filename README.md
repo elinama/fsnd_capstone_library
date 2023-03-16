@@ -19,7 +19,7 @@ There are three roles associated with API:
     - Get list of all users with overdue books
    
 ## Hosting (TODO)
-App is hosted [here](https://ben-capstone-fsnd.herokuapp.com/)
+App is hosted [here](https://fsnd-capstone-library.herokuapp.com/)
 
 ## Getting Started
 
