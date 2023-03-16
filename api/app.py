@@ -5,9 +5,9 @@ from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 from sqlalchemy import or_
 
-from ..auth.auth import AuthError, requires_auth
+from api.auth.auth import AuthError, requires_auth
 
-from ..db.models import Book, User, User2Book, setup_db, db_drop_and_create_all
+from api.db.models import Book, User, User2Book, setup_db, db_drop_and_create_all
 
 
 def create_app(test_config=None):

@@ -1,6 +1,6 @@
 import unittest
 from flask import Config
-from api.main.app import create_app
+from api.app import create_app
 from api.db.models import database_path, setup_db, database_filename, db
 import os
 import json
