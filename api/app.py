@@ -8,12 +8,13 @@ from sqlalchemy import or_
 from api.auth.auth import AuthError, requires_auth
 
 from api.db.models import Book, User, User2Book, setup_db, db_drop_and_create_all
+from api.config import Config
 
 
-def create_app(test_config=None):
+def create_app(config_class=Config):
     # create and configure the app
     app = Flask(__name__)
-    setup_db(app)
+    setup_db(app, config_class)
     CORS(app)
 
     with app.app_context():

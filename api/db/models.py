@@ -19,18 +19,17 @@ setup_db(app)
 '''
 
 
-def setup_db(app):
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+def setup_db(app, config_class):
+    app.config.from_object(config_class)
     app.jinja_env.filters['datetime'] = format_datetime
     db.app = app
     db.init_app(app)
 
+
 def shutdown_db(app):
     db.session.remove()
     db.drop_all()
-    #app.app_context().pop()
-
+    # app.app_context().pop()
 
 
 # ----------------------------------------------------------------------------#
@@ -119,7 +118,7 @@ class Book(db.Model):
     Author = Column(String(120), nullable=False)
     # String Edition
     Number_of_exemplars = Column(Integer, default=10, nullable=False)
-    #users_books = db.relationship('User2Book', back_populates='book', lazy=True)
+    # users_books = db.relationship('User2Book', back_populates='book', lazy=True)
     users_books = db.relationship('User2Book', backref="book")
 
     '''
@@ -277,8 +276,8 @@ class User2Book(db.Model):
     # DueDate
     Due_date = db.Column(db.Date, default=datetime.now() + timedelta(days=10), nullable=False)
     # relationships
-    #user = db.relationship('User', back_populates='users_books')
-    #book = db.relationship('Book', back_populates='users_books')
+    # user = db.relationship('User', back_populates='users_books')
+    # book = db.relationship('Book', back_populates='users_books')
 
     '''
     insert()

@@ -1,21 +1,21 @@
 import unittest
 from flask import Config
 from api.app import create_app
-from api.db.models import database_path, setup_db, database_filename, db
+from api.db.models import database_path, database_filename, db, setup_db
 import os
 import json
+from api.config import Config
 
 
 class TestConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = database_path
 
 
 class CapstoneTestCase(unittest.TestCase):
 
     def setUp(self):
         """Define test variables and initialize app."""
-        self.app = create_app()
+        self.app = create_app(TestConfig)
         self.client = self.app.test_client
         self.database_name = database_filename
         self.database_path = database_path
@@ -29,7 +29,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.headers = {'Content-Type': 'application/json'}
 
         self.app.config['SQLALCHEMY_DATABASE_URI_TEST'] = self.database_path
-        setup_db(self.app)
+        setup_db(self.app, TestConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
 
